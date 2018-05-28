@@ -1,0 +1,60 @@
+{
+  "name": "@vieriksson/the-react-router",
+  "public": true,
+  "description": "",
+  "version": "0.1.0",
+  "scripts": {
+    "compile": "npx tsc"
+  },
+  "author": "Vieriksson <me@viktoreriksson.se>",
+  "bugs": {
+    "url": "https://github.com/Vieriksson/the-react-router/issues",
+    "email": "me@viktoreriksson.se"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@types/react": "^16.3.14",
+    "@types/react-dom": "^16.0.5",
+    "path-to-regexp": "^2.2.1",
+    "react": "^16.4.0",
+    "react-dom": "^16.4.0",
+    "typescript": "^2.8.3"
+  },
+  "peerDependencies": {
+    "react": ">=15.0.0",
+    "path-to-regexp": ">=1.7.0"
+  },
+  "homepage": "https://github.com/Vieriksson/the-react-router",
+  "keywords": [
+    "react",
+    "router"
+  ],
+  "license": "MIT",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vieriksson/the-react-router"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.ts$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+    },
+    "testRegex": "src/.*\\.(test|spec)\\.(ts|tsx|js)$",
+    "testEnvironment": "node",
+    "moduleFileExtensions": [
+      "ts",
+      "js",
+      "json"
+    ]
+  },
+  "prettier": {
+    "printWidth": 80,
+    "singleQuote": true,
+    "semi": false,
+    "useTabs": false,
+    "tabWidth": 2,
+    "bracketSpacing": true,
+    "jsxBracketSameLine": false
+  }
+}
