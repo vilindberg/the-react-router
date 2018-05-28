@@ -1,0 +1,5 @@
+!dist
+src
+.editorconfig
+.prettierignore
+tsconfig.json

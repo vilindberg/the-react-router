@@ -60,6 +60,7 @@ class App extends React.Component {
 const renderElement = document.createElement('div')
 renderElement.id = 'root'
 document.body.appendChild(renderElement)
+
 render(<App />, document.getElementById('root'))
 
 ```
