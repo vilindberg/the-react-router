@@ -1,25 +1,22 @@
+import { RouterState } from './types'
+
+type Callback = ((state: RouterState) => void)
+
 export class RouterEvents {
-  listeners = {}
+  private listener: Callback[] = []
 
-  dispatch(event, data) {
-    const eventCallbacks = this.listeners[event]
-    if (!Array.isArray(eventCallbacks)) return
-
-    eventCallbacks.forEach(callback => callback(data))
+  dispatch(data) {
+    this.listener.forEach(callback => callback(data))
   }
 
-  addListener(event, callback) {
-    this.listeners[event] = this.listeners[event] || []
-    this.listeners[event].push(callback)
+  addListener(callback) {
+    this.listener.push(callback)
   }
 
-  removeListener(event, callback) {
-    const eventCallbacks = this.listeners[event]
-    if (!Array.isArray(eventCallbacks)) return
-
-    const callbackIndex = eventCallbacks.indexOf(callback)
+  removeListener(callback) {
+    const callbackIndex = this.listener.indexOf(callback)
     if (callbackIndex > -1) {
-      eventCallbacks.splice(callbackIndex, 1)
+      this.listener.splice(callbackIndex, 1)
     }
   }
 }

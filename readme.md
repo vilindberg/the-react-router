@@ -11,7 +11,7 @@ import React, { Component, Fragment } from 'react'
 import { render } from 'react-dom'
 import { createRouter, routerEvents, withNavigation } from '@vieriksson/the-react-router'
 
-routerEvents.addListener('navigation', state => {
+routerEvents.addListener(state => {
   console.log(state.url)
 })
 

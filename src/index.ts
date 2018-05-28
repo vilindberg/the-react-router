@@ -35,7 +35,7 @@ export const createRouter = (settings: RouteSettings) => {
     }
 
     dispatchState() {
-      routerEvents.dispatch('navigation', {
+      routerEvents.dispatch({
         ...this.state
       })
     }
