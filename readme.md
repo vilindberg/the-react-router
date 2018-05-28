@@ -7,7 +7,7 @@ $ npm install @vieriksson/the-react-router
 ## Usage
 
 ```jsx
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { render } from 'react-dom'
 import { createRouter, routerEvents, withNavigation } from '@vieriksson/the-react-router'
 
@@ -37,12 +37,12 @@ const routes = {
 const Router = createRouter(routes)
 
 const NavbarComponent = ({ navigate }) => (
-  <>
+  <Fragment>
     <button onClick={() => navigate('/')}>GO TO HOME</button>
     <button onClick={() => navigate('/omg')}>GO TO OMG</button>
     <button onClick={() => navigate('/omg/123')}>GO TO OMG 123</button>
     <button onClick={() => navigate('/janne')}>GO TO 404</button>
-  </>
+  </Fragment>
 )
 
 const Navbar = withNavigation(NavbarComponent)
