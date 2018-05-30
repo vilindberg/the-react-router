@@ -1,3 +1,5 @@
+# the-react-router [![Build Status](https://travis-ci.org/Vieriksson/the-react-router.svg?branch=master)](https://travis-ci.org/Vieriksson/the-react-router)
+
 ## Install
 
 ```
