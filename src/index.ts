@@ -1,4 +1,4 @@
-import React, { ComponentType } from 'react'
+import React from 'react'
 import { RouterProvider, routerInitialState, RouterConsumer } from './context'
 import { RouterEvents } from './events'
 import {
@@ -10,6 +10,7 @@ import {
   Navigate
 } from './types'
 import { matchRoutes } from './utils'
+import { ComponentType } from './types'
 
 export const routerEvents = new RouterEvents()
 
@@ -75,7 +76,7 @@ export const createRouter = (settings: RouteSettings) => {
   }
 }
 
-export const withNavigation = (Component: ComponentType) => props =>
+export const withNavigation = (Component: ComponentType<any>) => props =>
   React.createElement(
     RouterConsumer,
     null,
