@@ -1,7 +1,14 @@
 import React, { ComponentType } from 'react'
 import { RouterProvider, routerInitialState, RouterConsumer } from './context'
 import { RouterEvents } from './events'
-import { MatchedRoute, RouteSettings, RouterParams } from './types'
+import {
+  MatchedRoute,
+  RouteSettings,
+  RouterParams,
+  Route,
+  RouterState,
+  Navigate
+} from './types'
 import { matchRoutes } from './utils'
 
 export const routerEvents = new RouterEvents()
@@ -84,4 +91,14 @@ function createElements(matchedRoutes: MatchedRoute[], props: RouterParams) {
       ...props
     })
   )
+}
+
+export {
+  Route,
+  RouterState,
+  Navigate,
+  RouterParams,
+  RouteSettings,
+  MatchedRoute,
+  ComponentType
 }
