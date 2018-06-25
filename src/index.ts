@@ -37,6 +37,7 @@ export const createRouter = (settings: RouteSettings) => {
 
     updateState = (updateFn, callback?) => {
       this.setState(updateFn, () => {
+        window.scrollTo(0, 0)
         callback && callback()
         this.dispatchState()
       })
