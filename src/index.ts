@@ -1,5 +1,10 @@
 import React, { useContext } from 'react'
-import { RouterProvider, routerInitialState, RouterConsumer, RouterContext } from './context'
+import {
+  RouterProvider,
+  routerInitialState,
+  RouterConsumer,
+  RouterContext
+} from './context'
 import { RouterEvents } from './events'
 import {
   MatchedRoute,
@@ -95,9 +100,9 @@ function createElements(matchedRoutes: MatchedRoute[], props: RouterParams) {
   )
 }
 
-function useNavigation() {
-  const { navigate, state } = useContext(RouterContext);
-  return [ navigate, state ];
+function useNavigation(): [Navigate, RouterState] {
+  const { navigate, state } = useContext(RouterContext)
+  return [navigate, state]
 }
 
 export {
