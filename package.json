@@ -2,7 +2,7 @@
   "name": "@vieriksson/the-react-router",
   "public": true,
   "description": "",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "scripts": {
     "test": "jest",
     "compile": "npx tsc"
