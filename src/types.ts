@@ -31,4 +31,4 @@ export type MatchedRoute = {
 
 export type ComponentType<P> =
   | React.ComponentClass<P>
-  | ((props: P) => JSX.Element)
+  | ((props: P) => JSX.Element | null)
