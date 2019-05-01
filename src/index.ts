@@ -1,10 +1,5 @@
-import React, { useContext } from 'react'
-import {
-  RouterProvider,
-  routerInitialState,
-  RouterConsumer,
-  RouterContext
-} from './context'
+import React, { useContext, useState, useEffect, memo } from 'react'
+import { routerInitialState, RouterContext, RouterProvider } from './context'
 import { RouterEvents } from './events'
 import {
   MatchedRoute,
@@ -14,88 +9,59 @@ import {
   RouterState,
   Navigate
 } from './types'
-import { matchRoutes } from './utils'
 import { ComponentType } from './types'
+import { matchRoutes } from './utils'
 
 export const routerEvents = new RouterEvents()
 
 export const createRouter = (settings: RouteSettings) => {
-  return class extends React.Component {
-    state = routerInitialState
-
-    componentDidMount() {
-      this.dispatchState()
-      window.addEventListener('popstate', () =>
-        this.updateState(state => ({
-          ...state,
+  return memo(function Router({ children }: { children?: any }) {
+    const [routerState, setRouterState] = useState(routerInitialState)
+    useEffect(() => {
+      const onPopState = () =>
+        setRouterState({
+          ...routerState,
           url: window.location.pathname,
           hash: window.location.hash
-        }))
-      )
+        })
+      window.addEventListener('popstate', onPopState)
+      return () => window.removeEventListener('popstate', onPopState)
+    }, [])
+    useEffect(() => {
+      window.scrollTo(0, 0)
+      routerEvents.dispatch(routerState)
+    }, [routerState.url])
+
+    const navigate = (url: string) => {
+      setRouterState({ ...routerState, url })
+      window.history.pushState(null, '', url)
     }
 
-    navigate = (url: string) =>
-      this.updateState(
-        state => ({ ...state, url }),
-        () => window.history.pushState(null, '', url)
-      )
+    const matchedRoutes = matchRoutes(settings.routes, routerState.url)
+    const HAS_MATCHES = matchedRoutes.length > 0
 
-    updateState = (updateFn, callback?) => {
-      this.setState(updateFn, () => {
-        window.scrollTo(0, 0)
-        callback && callback()
-        this.dispatchState()
-      })
-    }
+    const childrenToRender = HAS_MATCHES
+      ? createElements(matchedRoutes)
+      : React.createElement(settings.fallback, { key: 'fallback' })
 
-    dispatchState() {
-      routerEvents.dispatch({
-        ...this.state
-      })
-    }
-
-    render() {
-      const { fallback, routes } = settings
-      const { url } = this.state
-
-      const matchedRoutes = matchRoutes(routes, url)
-      const HAS_MATCHES = matchedRoutes.length > 0
-
-      let childrenToRender = HAS_MATCHES
-        ? createElements(matchedRoutes, {
-            state: this.state,
-            navigate: this.navigate
-          })
-        : React.createElement(fallback, { key: 'fallback' })
-
-      return React.createElement(
-        RouterProvider,
-        {
-          value: {
-            state: this.state,
-            navigate: this.navigate
-          }
-        },
-        [this.props.children, childrenToRender]
-      )
-    }
-  }
+    return React.createElement(
+      RouterProvider,
+      {
+        value: {
+          state: routerState,
+          navigate: navigate
+        }
+      },
+      [children, childrenToRender]
+    )
+  })
 }
 
-export const withNavigation = (Component: ComponentType<any>) => props =>
-  React.createElement(
-    RouterConsumer,
-    null,
-    ({ state, navigate }: RouterParams) =>
-      React.createElement(Component, { state, navigate, ...props })
-  )
-
-function createElements(matchedRoutes: MatchedRoute[], props: RouterParams) {
+function createElements(matchedRoutes: MatchedRoute[]) {
   return matchedRoutes.map((route, idx) =>
     React.createElement(route.component, {
       key: idx,
-      params: route.params,
-      ...props
+      params: route.params
     })
   )
 }

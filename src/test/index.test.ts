@@ -8,7 +8,7 @@ test('should call listeners on dispatch', () => {
   })
 
   // Act
-  routerEvents.dispatch({})
+  routerEvents.dispatch({ url: '' })
 
   // Assert
   expect(mock.mock.calls.length).toBe(1)
@@ -22,10 +22,10 @@ test('should pass state as props to listeners on dispatch', () => {
   })
 
   // Act
-  routerEvents.dispatch({ a: 'b' })
+  routerEvents.dispatch({ url: 'b' })
 
   // Assert
-  expect(mock.mock.calls[0][0].a).toBe('b')
+  expect(mock.mock.calls[0][0].url).toBe('b')
 })
 
 test('should be able to call multiple listeners', () => {
@@ -40,7 +40,7 @@ test('should be able to call multiple listeners', () => {
   })
 
   // Act
-  routerEvents.dispatch({})
+  routerEvents.dispatch({ url: '' })
 
   // Assert
   expect(mock1.mock.calls.length).toBe(1)
