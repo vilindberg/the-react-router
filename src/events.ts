@@ -1,6 +1,6 @@
 import { RouterState } from './types'
 
-type Callback = ((state: RouterState) => void)
+type Callback = (state: RouterState) => void
 
 export class RouterEvents {
   private listener: Callback[] = []

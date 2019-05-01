@@ -2,7 +2,7 @@
   "name": "@vieriksson/the-react-router",
   "public": true,
   "description": "",
-  "version": "2.0.3",
+  "version": "3.0.0",
   "scripts": {
     "test": "jest",
     "compile": "tsc"
@@ -16,11 +16,12 @@
     "path-to-regexp": "^3.0.0"
   },
   "devDependencies": {
-    "@types/jest": "^24.0.11",
-    "@types/react": "^16.8.8",
-    "@types/react-dom": "^16.8.2",
-    "jest": "^24.5.0",
-    "ts-jest": "^24.0.0",
+    "@types/jest": "^24.0.12",
+    "@types/react": "^16.8.15",
+    "@types/react-dom": "^16.8.4",
+    "jest": "^24.7.1",
+    "react": ">=16.8.4",
+    "ts-jest": "^24.0.2",
     "typescript": "^3.4.5"
   },
   "peerDependencies": {

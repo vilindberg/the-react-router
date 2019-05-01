@@ -12,4 +12,8 @@ const Context = React.createContext<RouterParams>({
 
 const { Provider, Consumer } = Context
 
-export { Provider as RouterProvider, Consumer as RouterConsumer, Context as RouterContext }
+export {
+  Provider as RouterProvider,
+  Consumer as RouterConsumer,
+  Context as RouterContext
+}

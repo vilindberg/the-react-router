@@ -1,15 +1,15 @@
-import React, { useContext, useState, useEffect, memo } from 'react'
-import { routerInitialState, RouterContext, RouterProvider } from './context'
+import { createElement, memo, useContext, useEffect, useState } from 'react'
+import { RouterContext, routerInitialState, RouterProvider } from './context'
 import { RouterEvents } from './events'
 import {
+  ComponentType,
   MatchedRoute,
-  RouteSettings,
-  RouterParams,
+  Navigate,
   Route,
+  RouterParams,
   RouterState,
-  Navigate
+  RouteSettings
 } from './types'
-import { ComponentType } from './types'
 import { matchRoutes } from './utils'
 
 export const routerEvents = new RouterEvents()
@@ -42,9 +42,9 @@ export const createRouter = (settings: RouteSettings) => {
 
     const childrenToRender = HAS_MATCHES
       ? createElements(matchedRoutes)
-      : React.createElement(settings.fallback, { key: 'fallback' })
+      : createElement(settings.fallback, { key: 'fallback' })
 
-    return React.createElement(
+    return createElement(
       RouterProvider,
       {
         value: {
@@ -59,7 +59,7 @@ export const createRouter = (settings: RouteSettings) => {
 
 function createElements(matchedRoutes: MatchedRoute[]) {
   return matchedRoutes.map((route, idx) =>
-    React.createElement(route.component, {
+    createElement(route.component, {
       key: idx,
       params: route.params
     })
