@@ -4,69 +4,84 @@ Lightweight react router
 
 ## Install
 
+#### yarn
 ```
-$ npm install @vieriksson/the-react-router
+$ yarn add the-react-router
+```
+
+#### npm
+```
+$ npm install the-react-router
 ```
 
 ## Usage
 
-```jsx
-import React, { Component, Fragment } from 'react'
-import { render } from 'react-dom'
-import { createRouter, routerEvents, withNavigation } from '@vieriksson/the-react-router'
+```tsx
+import React from 'react'
+import { createRouter, routerEvents } from 'the-react-router'
+import { Navbar } from './navbar'
+import { ProductsPage, ProductPage, HomePage, FallbackPage } from './pages'
 
-routerEvents.addListener(state => {
-  console.log(state.url)
-})
+// Listen to route changes
+routerEvents.addListener(event => console.log(event))
 
+// Specify routes and fallback
 const routes = {
-  fallback: () => <div>404 UNTZ</div>,
+  fallback: FallbackPage,
   routes: [
     {
       path: '/',
       exact: true,
-      component: () => <div>HOME</div>
+      component: HomePage
     },
     {
-      path: '/omg',
-      component: () => <div>OMG</div>
+      path: '/products',
+      component: ProductsPage
     },
     {
-      path: '/omg/:id',
-      component: withNavigation(({ params }) => <div>OMG {params.id}</div>)
+      path: '/products/:id',
+      component: ProductPage
     }
   ]
 }
 
-const Router = createRouter(routes)
+// Router handles the url, params etc and provides the context
+// Routes listenes to context changes and render the correct page
+const [Router, Routes] = createRouter(routes)
 
-const NavbarComponent = ({ navigate }) => (
-  <Fragment>
-    <button onClick={() => navigate('/')}>GO TO HOME</button>
-    <button onClick={() => navigate('/omg')}>GO TO OMG</button>
-    <button onClick={() => navigate('/omg/123')}>GO TO OMG 123</button>
-    <button onClick={() => navigate('/janne')}>GO TO 404</button>
-  </Fragment>
-)
+export const App = () => {
+  return (
+    <Router>
+      <Navbar />
+      <Routes />
+    </Router>
+  )
+}
+```
 
-const Navbar = withNavigation(NavbarComponent)
-
-class App extends React.Component {
-  render() {
+### Navigate
+```tsx
+  export const ProductPage = () => {
+    const { navigate } = useNavigation()
     return (
-      <Router>
-        <Navbar />
-      </Router>
+      <div>
+        PRODUCTS
+        <ul>
+          <li onClick={() => navigate('/products/1')}>Product 1</li>
+          <li onClick={() => navigate('/products/2')}>Product 2</li>
+          <li onClick={() => navigate('/products/3')}>Product 3</li>
+        </ul>
+      </div>
     )
   }
-}
+```
 
-const renderElement = document.createElement('div')
-renderElement.id = 'root'
-document.body.appendChild(renderElement)
-
-render(<App />, document.getElementById('root'))
-
+### Read params
+```tsx
+  export const SpecificProductPage = () => {
+    const { params } = useNavigation<{ id: string }>()
+    return <div>Product number: {params.id}</div>
+  }
 ```
 
 ## License

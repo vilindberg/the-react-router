@@ -23,7 +23,7 @@ function createDecodeRoute(url: string) {
     return {
       component,
       match,
-      keys
+      keys,
     }
   }
 }
@@ -47,6 +47,6 @@ function addParams(route: MatchedRoute) {
   return {
     component,
     match,
-    params
+    params,
   }
 }

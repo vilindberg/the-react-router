@@ -5,12 +5,12 @@ test('if exact, should only match if path === url', () => {
   const routes = [
     {
       path: '/',
-      exact: true
+      exact: true,
     },
     {
       path: '/123',
-      exact: true
-    }
+      exact: true,
+    },
   ] as any
 
   // Act
@@ -24,11 +24,11 @@ test('if not exact, should match if url starts with path', () => {
   // Arrange
   const routes = [
     {
-      path: '/'
+      path: '/',
     },
     {
-      path: '/123'
-    }
+      path: '/123',
+    },
   ] as any
 
   // Act
@@ -42,8 +42,8 @@ test('should receive params with same property name as in path', () => {
   // Arrange
   const routes = [
     {
-      path: '/test/:id'
-    }
+      path: '/test/:id',
+    },
   ] as any
 
   // Act
