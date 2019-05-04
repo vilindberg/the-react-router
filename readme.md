@@ -2,6 +2,9 @@
 
 Lightweight react router
 
+## Demo
+[Go to Sandbox](https://codesandbox.io/s/v6qln3yl43?from-embed)
+
 ## Install
 
 #### yarn

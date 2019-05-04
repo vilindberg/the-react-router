@@ -22,7 +22,6 @@ export const routes = {
       exact: true,
       component: ProductsPage,
     },
-    ,
     {
       path: '/products/:id',
       component: ProductPage,
