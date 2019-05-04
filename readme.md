@@ -64,7 +64,7 @@ export const App = () => {
 
 ### Navigate
 ```tsx
-  export const ProductPage = () => {
+  export const ProductsPage = () => {
     const { navigate } = useNavigation()
     return (
       <div>
@@ -81,7 +81,7 @@ export const App = () => {
 
 ### Read params
 ```tsx
-  export const SpecificProductPage = () => {
+  export const ProductPage = () => {
     const { params } = useNavigation<{ id: string }>()
     return <div>Product number: {params.id}</div>
   }
