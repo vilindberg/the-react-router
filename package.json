@@ -1,16 +1,32 @@
 {
-  "name": "@vieriksson/the-react-router",
+  "name": "the-react-router",
   "public": true,
-  "description": "",
-  "version": "3.0.0",
+  "description": "A lightweight react router",
+  "version": "0.1.0",
+  "license": "MIT",
+  "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
+  "author": "Vieriksson <me@viktoreriksson.se>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vieriksson/the-react-router"
+  },
+  "bugs": {
+    "url": "https://github.com/vieriksson/the-react-router/issues",
+    "email": "me@viktoreriksson.se"
+  },
+  "keywords": [
+    "react",
+    "router",
+    "hooks",
+    "navigation"
+  ],
   "scripts": {
     "test": "jest",
     "compile": "tsc"
   },
-  "author": "Vieriksson <me@viktoreriksson.se>",
-  "bugs": {
-    "url": "https://github.com/Vieriksson/the-react-router/issues",
-    "email": "me@viktoreriksson.se"
+  "peerDependencies": {
+    "react": ">=16.8.4"
   },
   "dependencies": {
     "path-to-regexp": "^3.0.0"
@@ -23,41 +39,5 @@
     "react": ">=16.8.4",
     "ts-jest": "^24.0.2",
     "typescript": "^3.4.5"
-  },
-  "peerDependencies": {
-    "react": ">=16.8.4"
-  },
-  "homepage": "https://github.com/Vieriksson/the-react-router",
-  "keywords": [
-    "react",
-    "router"
-  ],
-  "license": "MIT",
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/vieriksson/the-react-router"
-  },
-  "jest": {
-    "transform": {
-      "^.+\\.ts$": "ts-jest"
-    },
-    "testRegex": "src/.*\\.(test|spec)\\.(ts|tsx|js)$",
-    "testEnvironment": "jsdom",
-    "moduleFileExtensions": [
-      "ts",
-      "js",
-      "json"
-    ]
-  },
-  "prettier": {
-    "printWidth": 80,
-    "singleQuote": true,
-    "semi": false,
-    "useTabs": false,
-    "tabWidth": 2,
-    "bracketSpacing": true,
-    "jsxBracketSameLine": false
   }
 }

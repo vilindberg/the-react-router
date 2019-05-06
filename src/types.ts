@@ -8,7 +8,8 @@ export type Navigate = (url: string) => void
 export type RouterParams = {
   state: RouterState
   navigate: Navigate
-  params?: any
+  matchedRoutes: MatchedRoute[]
+  params: any
 }
 
 export type Route = {
@@ -29,6 +30,17 @@ export type MatchedRoute = {
   params?: any
 }
 
-export type ComponentType<P> =
-  | React.ComponentClass<P>
-  | ((props: P) => JSX.Element | null)
+export type ComponentType<P> = React.ComponentClass<P> | ((props: P) => JSX.Element | null)
+
+export type RouterType = React.NamedExoticComponent<{
+  children: React.ReactNode
+}>
+
+export type RoutesType = React.NamedExoticComponent<{
+  children?: React.ReactNode
+}>
+export type UseNavigation<PropsType = any> = {
+  navigate: Navigate
+  state: RouterState
+  params: PropsType
+}

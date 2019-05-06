@@ -1,11 +1,11 @@
 import { RouterState } from './types'
 
-type Callback = (state: RouterState) => void
+type Callback = (state: RouterState & { params?: any }) => void
 
 export class RouterEvents {
   private listener: Callback[] = []
 
-  dispatch(data: RouterState) {
+  dispatch(data: RouterState & { params?: any }) {
     this.listener.forEach(callback => callback(data))
   }
 

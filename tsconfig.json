@@ -13,9 +13,10 @@
     "sourceMap": true,
     "declaration": true,
     "noUnusedLocals": true,
-    "outDir": "dist",
+    "outDir": "lib",
     "rootDir": "./src",
     "pretty": true,
     "allowSyntheticDefaultImports": true
-  }
+  },
+  "exclude": ["node_modules", "./app", "./lib"]
 }

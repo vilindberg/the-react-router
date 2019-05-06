@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "module": "CommonJS",
+    "target": "es2017",
+    "lib": ["dom", "es2017"],
+    "jsx": "react",
+    "noEmit": true,
+    "moduleResolution": "node",
+    "noImplicitThis": true,
+    "noImplicitAny": false,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "noUnusedParameters": true,
+    "noUnusedLocals": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "strictPropertyInitialization": false,
+    "allowSyntheticDefaultImports": true,
+    "strictNullChecks": false,
+    "esModuleInterop": true
+  },
+  "exclude": ["node_modules"]
+}
