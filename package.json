@@ -2,7 +2,7 @@
   "name": "the-react-router",
   "public": true,
   "description": "A lightweight react router",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "license": "MIT",
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",
@@ -23,7 +23,7 @@
   ],
   "scripts": {
     "test": "jest",
-    "compile": "tsc"
+    "build": "tsc"
   },
   "peerDependencies": {
     "react": ">=16.8.4"

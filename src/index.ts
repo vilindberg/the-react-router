@@ -1,6 +1,7 @@
 import { createElement, Fragment, memo, useCallback, useContext, useEffect, useState } from 'react'
 import { RouterContext, routerInitialState, RouterProvider } from './context'
 import { RouterEvents } from './events'
+import { Link } from './link'
 import {
   ComponentType,
   MatchedRoute,
@@ -129,4 +130,5 @@ export {
   MatchedRoute,
   ComponentType,
   useNavigation,
+  Link,
 }

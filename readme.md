@@ -62,7 +62,7 @@ export const App = () => {
 }
 ```
 
-### Navigate
+### Navigate using the hook
 ```tsx
   export const ProductsPage = () => {
     const { navigate } = useNavigation()
@@ -76,6 +76,13 @@ export const App = () => {
         </ul>
       </div>
     )
+  }
+```
+
+### Navigate using Link-component
+```tsx
+  function ProductsPage() {
+    return <Link to="/products/1">Product 1</Link>
   }
 ```
 
