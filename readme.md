@@ -79,6 +79,11 @@ export const App = () => {
   }
 ```
 
+#### Navigate with a custom state
+```ts
+navigate('/products/3', { name: 'Product 3', clickPos: { x, y } })
+```
+
 ### Navigate using Link-component
 ```tsx
   function ProductsPage() {
@@ -86,11 +91,28 @@ export const App = () => {
   }
 ```
 
+#### Navigate with a custom state
+```tsx
+<Link to="/products/1" state={{ name: 'Product 1', clickPos: { x, y } }}>Product 1</Link>
+```
+
 ### Read params
 ```tsx
+  interface RouteState {
+    name: string,
+    clickPos: { x: number, y: number }
+  }
+
   export const ProductPage = () => {
-    const { params } = useNavigation<{ id: string }>()
-    return <div>Product number: {params.id}</div>
+    const { params, state: { routeState } } = useNavigation<{ id: string }, RouteState>()
+
+    return (
+      <div>
+        Product number: {params.id}
+        Name from state: {routeState?.name}
+        Pos from state: {routeState?.clickPos.x}, {routeState?.clickPos.y}
+      </div>
+    )
   }
 ```
 
