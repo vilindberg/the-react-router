@@ -1,9 +1,10 @@
-export type RouterState = {
+export type RouterState<T = any> = {
   url: string
   hash?: string
+  routeState?: T
 }
 
-export type Navigate = (url: string) => void
+export type Navigate = (url: string, state?: any) => void
 
 export type RouterParams = {
   state: RouterState
@@ -39,8 +40,8 @@ export type RouterType = React.NamedExoticComponent<{
 export type RoutesType = React.NamedExoticComponent<{
   children?: React.ReactNode
 }>
-export type UseNavigation<PropsType = any> = {
+export type UseNavigation<PropsType = any, StateType = any> = {
   navigate: Navigate
-  state: RouterState
+  state: RouterState<StateType>
   params: PropsType
 }

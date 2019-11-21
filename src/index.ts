@@ -32,27 +32,26 @@ export function createRouter(settings: RouteSettings): [RouterType, RoutesType] 
     })
 
     useEffect(() => {
-      const onPopState = () => {
-        handleRouteChange(window.location.pathname, window.location.hash)
+      const onPopState = (event: PopStateEvent) => {
+        handleRouteChange(window.location.pathname, window.location.hash, event.state)
       }
       window.addEventListener('popstate', onPopState)
       return () => window.removeEventListener('popstate', onPopState)
     }, [])
 
     useEffect(() => {
-      window.scrollTo(0, 0)
       routerEvents.dispatch({ ...routerState.state, params: routerState.params })
     }, [routerState.state.url])
 
     const handleRouteChange = useCallback(
-      (url: string, hash: string = '') => {
+      (url: string, hash: string = '', state: unknown = {}) => {
         const matchedRoutes = matchRoutes(settings.routes, url)
         const params = matchedRoutes.reduce(
           (_params, route) => ({ ..._params, ...route.params }),
           {}
         )
         setRouterState(routerState => ({
-          state: { ...routerState.state, url, hash },
+          state: { ...routerState.state, url, hash, routeState: state },
           matchedRoutes,
           params,
         }))
@@ -61,9 +60,9 @@ export function createRouter(settings: RouteSettings): [RouterType, RoutesType] 
     )
 
     const navigate = useCallback(
-      (url: string) => {
-        handleRouteChange(url)
-        window.history.pushState(null, '', url)
+      (url: string, state?: unknown) => {
+        handleRouteChange(url, undefined, state)
+        window.history.pushState(state, '', url)
       },
       [handleRouteChange]
     )
@@ -107,7 +106,7 @@ function createElements(matchedRoutes: MatchedRoute[]) {
   )
 }
 
-function useNavigation<PropsType = any>(): UseNavigation<PropsType> {
+function useNavigation<PropsType = any, StateType = any>(): UseNavigation<PropsType, StateType> {
   const context = useContext(RouterContext)
   if (!context || !context.navigate) {
     throw new Error(
