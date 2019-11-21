@@ -25,20 +25,23 @@ export const ProductsPage = () => {
     <div>
       <h1>Products</h1>
       <ul>
-        <li onClick={() => navigation.navigate('/products/1')}>Product 1</li>
-        <li onClick={() => navigation.navigate('/products/2')}>Product 2</li>
-        <li onClick={() => navigation.navigate('/products/3')}>Product 3</li>
+        <li onClick={(e) => navigation.navigate('/products/1', { name: 'Product 1', color: '#8CC646', from: { x: e.clientX, y: e.clientY } })}>Product 1</li>
+        <li onClick={(e) => navigation.navigate('/products/2', { name: 'Product 2', color: '#FCD17E', from: { x: e.clientX, y: e.clientY } })}>Product 2</li>
+        <li onClick={(e) => navigation.navigate('/products/3', { name: 'Product 2', color: '#3957BD', from: { x: e.clientX, y: e.clientY } })}>Product 3</li>
       </ul>
     </div>
   )
 }
 
 export const ProductPage = () => {
-  const navigation = useNavigation<{ id: string }>()
+  const navigation = useNavigation<{ id: string }, { name: string, color: string, from: { x: number, y: number } }>()
+  const { color, name, from } = navigation.state.routeState || {}
 
   return (
     <div>
-      <h3>Product number: {navigation.params.id}</h3>
+      <h3>Product number (from url): {navigation.params.id}</h3>
+      <h4><span style={{ borderRadius: 10, display: 'inline-block', width: 20, height: 20, backgroundColor: color }} />{name}</h4>
+      {from && <p>You click at x: {from.x}, y: {from.y}</p>}
     </div>
   )
 }

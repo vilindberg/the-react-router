@@ -1,4 +1,4 @@
-import pathToRegexp from 'path-to-regexp'
+import { pathToRegexp } from 'path-to-regexp'
 import { MatchedRoute, Route } from './types'
 
 export function matchRoutes(routes: Route[], url: string): MatchedRoute[] {
