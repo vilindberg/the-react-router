@@ -40,7 +40,6 @@ export function createRouter(settings: RouteSettings): [RouterType, RoutesType] 
     }, [])
 
     useEffect(() => {
-      window.scrollTo(0, 0)
       routerEvents.dispatch({ ...routerState.state, params: routerState.params })
     }, [routerState.state.url])
 
