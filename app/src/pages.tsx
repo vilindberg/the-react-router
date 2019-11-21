@@ -41,7 +41,7 @@ export const ProductPage = () => {
     <div>
       <h3>Product number (from url): {navigation.params.id}</h3>
       <h4><span style={{ borderRadius: 10, display: 'inline-block', width: 20, height: 20, backgroundColor: color }} />{name}</h4>
-      {from && <p>You click at x: {from.x}, y: {from.y}</p>}
+      {from && <p>You clicked at x: {from.x}, y: {from.y}</p>}
     </div>
   )
 }
