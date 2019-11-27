@@ -55,10 +55,9 @@ export function createRouter(settings: RouteSettings): [RouterType, RoutesType] 
           {}
         )
         setRouterState(routerState => ({
-          state: { ...routerState.state, url, hash, routeState: state },
+          state: { ...routerState.state, url, hash, routeState: state, action },
           matchedRoutes,
-          params,
-          action
+          params
         }))
       },
       [settings.routes]
