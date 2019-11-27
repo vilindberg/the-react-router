@@ -13,6 +13,7 @@ import {
   RouteSettings,
   RoutesType,
   UseNavigation,
+  NavigationActionType,
 } from './types'
 import { matchRoutes } from './utils'
 
@@ -33,18 +34,21 @@ export function createRouter(settings: RouteSettings): [RouterType, RoutesType] 
 
     useEffect(() => {
       const onPopState = (event: PopStateEvent) => {
-        handleRouteChange(window.location.pathname, window.location.hash, event.state)
+        handleRouteChange(window.location.pathname, window.location.hash, event.state, 'historyPop')
       }
       window.addEventListener('popstate', onPopState)
       return () => window.removeEventListener('popstate', onPopState)
     }, [])
 
     useEffect(() => {
+      if (routerState.state.action === 'navigate') {
+        window.scrollTo(0,0);
+      }
       routerEvents.dispatch({ ...routerState.state, params: routerState.params })
     }, [routerState.state.url])
 
     const handleRouteChange = useCallback(
-      (url: string, hash: string = '', state: unknown = {}) => {
+      (url: string, hash: string = '', state: unknown = {}, action: NavigationActionType) => {
         const matchedRoutes = matchRoutes(settings.routes, url)
         const params = matchedRoutes.reduce(
           (_params, route) => ({ ..._params, ...route.params }),
@@ -54,6 +58,7 @@ export function createRouter(settings: RouteSettings): [RouterType, RoutesType] 
           state: { ...routerState.state, url, hash, routeState: state },
           matchedRoutes,
           params,
+          action
         }))
       },
       [settings.routes]
@@ -61,7 +66,7 @@ export function createRouter(settings: RouteSettings): [RouterType, RoutesType] 
 
     const navigate = useCallback(
       (url: string, state?: unknown) => {
-        handleRouteChange(url, undefined, state)
+        handleRouteChange(url, undefined, state, 'navigate')
         window.history.pushState(state, '', url)
       },
       [handleRouteChange]

@@ -45,3 +45,5 @@ export type UseNavigation<PropsType = any, StateType = any> = {
   state: RouterState<StateType>
   params: PropsType
 }
+
+export type NavigationActionType = 'historyPop' | 'navigate' | 'initNavigation';

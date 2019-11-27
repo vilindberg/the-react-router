@@ -4,6 +4,7 @@ import { RouterParams } from './types'
 export const routerInitialState = {
   url: window.location.pathname,
   hash: window.location.hash,
+  action: 'initNavigation'
 }
 
 const Context = createContext<RouterParams>({
